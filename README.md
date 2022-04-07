@@ -1,5 +1,5 @@
-# PHP-MVC-Framework
-This repository is for creating a simple MVC framework with PHP, Let's call it Algorithmi PHP Framework.
+# MVC-Framework
+This repository is for creating a simple MVC framework with PHP.
 
 ### Target:
 1. Learning MVC structure in depth.
