@@ -1,0 +1,17 @@
+{
+    "name": "algorithmi/phpmvc-framework",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "arshwy",
+            "email": "support@algorithmi.com"
+        }
+    ],
+    "require": {
+
+    }
+}
