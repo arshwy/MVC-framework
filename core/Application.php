@@ -3,6 +3,7 @@
 namespace app\core;
 
 
+
 /**
  * Class Application
  * 
@@ -13,40 +14,58 @@ namespace app\core;
 
  class Application {
 
-    public static string $ROOT_DIR;
+    public Database $db;
+    public static string $ROOT_DIR ;
     public Router $router; // a data type of class Router in (php>=7.4)
     public Request $request;
     public Response $response;
+    public Session $session;
+    public static $config = [];
+
+    // APPLICATION OBJECTS
     public static Application $app;
-    public static array $config = []; // the aliases/global classes
-    public static array $aliases = []; // the aliases/global classes
+    
 
     public function __construct($root_path)
     {
-      self::$ROOT_DIR = $root_path; 
+      # loading the route
+      self::$ROOT_DIR = $root_path;
+      # Loading the congigartion files to the cache
+      Config::load();
+      self::$config = Config::get('app');
+      $this->db = new Database(Config::get('database'));
       self::$app = $this;
-      self::$config =  require $root_path.'/config/app.php'; 
-      self::$aliases = self::$config['aliases'];
       $this->request = new Request();
       $this->response = new Response();
+      $this->session = new Session();
       $this->router = new Router($this->request, $this->response);
     }
 
-   //to run the get/post/put and other requests
+    # to run the http requests
     public function run()
-    { 
+    {
        $this->router->resolve();
     }
 
-    public function getLocale() {
-      return self::$config['locale'];
+    public function getLocale() 
+    {
+      if(self::$config['locale'])
+          return self::$config['locale'];
+      return false;
     }
 
-    public function setLocale($locale) {
-      self::$config['locale'] = $locale;
+    public function setLocale($locale) 
+    {
+      if(self::$config['locale'] && Config::$cache['app']['locale']){
+        self::$config['locale'] = $locale;
+        Config::$cache['app']['locale'] = $locale;
+        return true;
+      }
+      return false;
     }
 
-    public function getRootDir(){
+    public function root()
+    {
       return self::$ROOT_DIR;
     }
 
@@ -63,7 +82,7 @@ namespace app\core;
   * echo "<pre>";
     echo var_dump($callback);
     echo "</pre>";
-
+    die;
   */
 
 

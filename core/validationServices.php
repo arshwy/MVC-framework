@@ -14,6 +14,7 @@ trait validationServices {
      * ------------------------------------------------------------------
      */
 
+
     public function explodeRulesToArrays($rules)
     {
         foreach($rules as $key => $inputRules)
@@ -191,7 +192,7 @@ trait validationServices {
         return false;
     }
 
-    public function isFileEmpty($input)
+    public function isFileEmpty(array $input)
     {
         if (!$input || $input["tmp_name"] === false || $input === '' || $input === null) {
             return true;

@@ -15,24 +15,37 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 
-/** 
- * CONFIGRATIONS
+/**
+ * Configrations
  */
 $ROOT_DIR = dirname(__DIR__);
+// Loading the .env files to $_$ENV by vlucas/phpdotenv package that we installed by composer
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable($ROOT_DIR);
+$dotenv->load();
+
+
+
+
+
 
 
 /**
- * AAPPLICATION INSTANCE
+ * AAPPLICATION USES
  */
-
 use app\core\Application;
+
+
+/**
+ * APPLICATION INSTANCE
+ */
 $app = new Application($ROOT_DIR);
 
 
 /**
- * APPLICATION ROUTES
+ * APPLICATION REQUIREMENTS
  */
-require_once  $ROOT_DIR.'/routes/web.php';
+require_once $ROOT_DIR.'/routes/web.php';
 
 
 /**

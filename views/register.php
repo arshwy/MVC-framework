@@ -9,46 +9,46 @@
 
         <div class="mb-3">
           <label>First Name</label>
-          <input type="text" name="first_name" class="form-control <?=isset($errors['first_name']) ? "is-invalid": '';?>" 
-                 value="<?= isset($old["first_name"])? $old["first_name"]: ''; ?>">
-          <?php if(isset($errors['first_name'])): ?>
-            <div class="text text-danger"><?= $errors['first_name'] ?></div>
+          <input type="text" name="first_name" class="form-control <?=error("first_name") ? "is-invalid": '';?>" 
+                 value="<?=old("first_name");?>">
+          <?php if(error("first_name")): ?>
+            <div class="text text-danger"><?=error("first_name")?></div>
           <?php endif ?>
         </div>
 
         <div class="mb-3">
           <label>Last Name</label>
-          <input type="text" name="last_name"  class="form-control <?=isset($errors['last_name']) ? "is-invalid": '';?>"
-                 value="<?= isset($old["last_name"])? $old["last_name"]: ''; ?>">
-          <?php if(isset($errors['last_name'])): ?>
-            <div class="text text-danger"><?= $errors['last_name'] ?></div>
+          <input type="text" name="last_name"  class="form-control <?=error("last_name")? "is-invalid": '';?>"
+                 value="<?=old("last_name");?>">
+          <?php if(error("last_name")):?>
+            <div class="text text-danger"><?=error("last_name")?></div>
           <?php endif ?>
         </div>
 
         <div class="mb-3">
           <label>Email address</label>
-          <input type="email" name="email"  class="form-control <?=isset($errors['email']) ? "is-invalid": '';?>"
-                 value="<?= isset($old["email"])? $old["email"]: ''; ?>">
-          <?php if(isset($errors['email'])): ?>
-            <div class="text text-danger"><?= $errors['email'] ?></div>
+          <input type="email" name="email"  class="form-control <?=error("email") ? "is-invalid": '';?>"
+                 value="<?=old("email");?>">
+          <?php if(error("email")): ?>
+            <div class="text text-danger"><?=error("email")?></div>
           <?php endif ?>
         </div>
 
         <div class="mb-3">
           <label>Password</label>
-          <input type="password" name="password" class="form-control <?=isset($errors['password']) ? "is-invalid": '';?>" 
-                 value="<?= isset($old["password"])? $old["password"]: ''; ?>">
-          <?php if(isset($errors['password'])): ?>
-            <div class="text text-danger"><?= $errors['password'] ?></div>
+          <input type="password" name="password" class="form-control <?=error("password") ? "is-invalid": '';?>" 
+                 value="<?=old("password");?>">
+          <?php if(error("password")): ?>
+            <div class="text text-danger"><?=error("password")?></div>
           <?php endif ?>
         </div>
 
         <div class="mb-3">
           <label>Confirm Password</label>
-          <input type="password" name="password_confirmation" class="form-control <?=isset($errors['password_confirmation']) ? "is-invalid": '';?>"
-                 value="<?= isset($old["password_confirmation"])? $old["password_confirmation"]: '';?>">
-            <?php if(isset($errors['password_confirmation'])): ?>
-            <div class="text text-danger"><?= $errors['password_confirmation'] ?></div>
+          <input type="password" name="password_confirmation" class="form-control <?=error("password_confirmation") ? "is-invalid": '';?>"
+                 value="<?=old("password_confirmation");?>">
+          <?php if(error("password_confirmation")): ?>
+            <div class="text text-danger"><?=error("password_confirmation")?></div>
           <?php endif ?>
         </div>
 

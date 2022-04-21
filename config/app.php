@@ -1,20 +1,19 @@
 <?php 
 
-
 return [
 
 
     /**
-     * ROOT DIRECTORY FOR THE APLLICATION
-     */
-    "ROOT" => dirname(__DIR__),
-
-
-    /**
-     * Locale Language, english is the initial & fallback locale
+     * Locale Language
+     * English is the initial & fallback locale
      */
      "locale" => "en",
 
+
+     /**
+     * Fallback locale
+     */
+    "fb_locale" => "en",
 
 
     /** Not done yet
@@ -23,10 +22,26 @@ return [
      */
     'aliases' => [
         "Auth" => \app\core\Auth::class,
+        "Config" => \app\core\Config::class,
     ],
 
 
-
+    "test1" => [
+        "test11" => "test result",
+        "test12",
+        "test13" => [
+            "test131",
+            "test132" => 132,
+            [
+                "test1331",
+                "test1332" => [
+                    "test",
+                ],
+            ]
+        ]
+    ],
+    "test2" => 2,
+    "test3",
 
 
 ];

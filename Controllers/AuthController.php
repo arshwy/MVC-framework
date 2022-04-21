@@ -2,11 +2,13 @@
 
 /** User: Algorithmi ... */
 
-namespace app\controllers;
+namespace app\controllers; # Mandatory
+use app\core\Controller; # Mandatory
+use app\core\Request; # Mandatory
 
-use app\core\Controller;
-use app\core\Request;
-use app\models\RegisterModel;
+
+use app\models\User;
+
 
 /**
  * Class AuthController
@@ -30,29 +32,32 @@ use app\models\RegisterModel;
         echo "check user";
     }
 
-
     public function register()
     {
-        return $this->view('register', [
+        return view('register', [
             'title' => "Create new account"
         ]);
     }
 
     public function create(Request $request)
     {
-        $registerModel = new RegisterModel();
-        $registerModel->loadData($request->getData());
-
-        if($registerModel->validate() && $registerModel->register()){
-            return "Sucess!";
+        $user = new User();
+        $user->loadData($request->getData());
+        if($user->validate()){
+            $stored_user = $user->create([
+                "firstname" => $user->first_name,
+                "lastname" => $user->last_name,
+                "email" => $user->email,
+                "password" => passwordHash($user->password),
+            ]);
+            redirect('/')->with('success', "You are successfully registered!");
         }
-
-        return $this->view('register', [
-            'title' => "Create new account",
-            'old' => $request->getData(),
-            'errors' => $registerModel->getErrors(),
-        ]);
+        else 
+        {
+            redirect()->back();
+        }
     }
+
 
 
  }
@@ -60,8 +65,7 @@ use app\models\RegisterModel;
 
  
  /* FOR TESTING
-  * echo "<pre>{}</pre>";
-  * echo "<pre>";
+    echo "<pre>";
     echo var_dump($callback);
     echo "</pre>";
     die;

@@ -15,6 +15,8 @@ namespace app\core;
 
 class Request {
 
+    protected static array $data = [];
+
     public function getPath()
     {
         // get the REQUEST_URI form the $_SERVER and return '/' if not found
@@ -71,6 +73,7 @@ class Request {
         return $data;
     }
 
+
 }
 
 
@@ -83,5 +86,5 @@ class Request {
   * echo "<pre>";
     echo var_dump($callback);
     echo "</pre>";
-
+    die;
   */

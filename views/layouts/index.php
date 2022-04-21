@@ -14,8 +14,6 @@
   </head>
 
   <body>
-  
-    <?php /* print_r($Auth->getUser()); */ ?>
     
     <div>{{view}}</div>
 

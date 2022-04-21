@@ -2,7 +2,6 @@
 
  namespace app\core;
 
-
  
 /**
  * Class Router
@@ -15,12 +14,12 @@
  */
 
 
+
  class Router {
 
     protected array $routes = [];
     public Request $request;
     public Response $response;
-    public array $aliases = [];
 
     public function __construct(Request $request, Response $response)
     {
@@ -84,10 +83,8 @@
     protected function renderOnlyLayout()
     {
         ob_start(); // start output caching as buffer [nothing actually output on the browser]
-        foreach(Application::$aliases as $aliase => $class){
-             $$aliase = $class;
-        }
-        
+        # include the helpers functions to be available for views
+        require_once Application::$ROOT_DIR.'/core/helpers.php';
         include_once Application::$ROOT_DIR."/views/layouts/index.php";
         return ob_get_clean(); // return the buffered content
     }
@@ -109,7 +106,6 @@
         $layoutContent =  $this->renderOnlyLayout();
         return str_replace('{{view}}', $view, $layoutContent); 
     }
-
 
     // views folder is the root
     // $pagePathName, without extension
@@ -133,8 +129,8 @@
 
 * echo "<pre>{}</pre>";
 
-* echo "<pre>";
-echo var_dump($callback);
-echo "</pre>";
+    echo "<pre>";
+    echo var_dump($callback);
+    echo "</pre>";
 
 */
